@@ -1,286 +1,686 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Tejas Anand Nathe - Computer Engineering Student | Python Developer | Data Analyst | Data Scientist">
-    <meta name="keywords" content="Python Developer, Data Analyst, Data Science, Portfolio, Computer Engineering">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="Tejas Anand Nathe - Data Analytics Portfolio">
+    
     <title>Tejas Anand Nathe | Portfolio</title>
-    
-    <!-- Google Fonts -->
+
+    <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome Icons -->
+
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
-    
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            scroll-behavior:smooth;
+        }
+
+        body{
+            font-family:'Inter',sans-serif;
+            background:#0f172a;
+            color:#e2e8f0;
+            line-height:1.6;
+        }
+
+        a{
+            text-decoration:none;
+            color:inherit;
+        }
+
+        .container{
+            width:90%;
+            max-width:1200px;
+            margin:auto;
+        }
+
+        /* Navbar */
+
+        .navbar{
+            position:fixed;
+            width:100%;
+            top:0;
+            left:0;
+            background:#020617;
+            padding:18px 0;
+            z-index:1000;
+            box-shadow:0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .nav-container{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+        }
+
+        .logo{
+            font-size:24px;
+            font-weight:700;
+            color:#38bdf8;
+        }
+
+        .nav-links{
+            display:flex;
+            gap:25px;
+        }
+
+        .nav-links a{
+            color:#cbd5e1;
+            transition:0.3s;
+        }
+
+        .nav-links a:hover{
+            color:#38bdf8;
+        }
+
+        /* Hero */
+
+        .hero{
+            min-height:100vh;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            text-align:center;
+            padding-top:100px;
+            background:linear-gradient(to bottom,#020617,#0f172a);
+        }
+
+        .hero h1{
+            font-size:55px;
+            margin-bottom:15px;
+        }
+
+        .highlight{
+            color:#38bdf8;
+        }
+
+        .hero h2{
+            font-size:24px;
+            font-weight:400;
+            color:#94a3b8;
+            margin-bottom:20px;
+        }
+
+        .hero p{
+            max-width:700px;
+            margin:auto;
+            color:#cbd5e1;
+            margin-bottom:30px;
+        }
+
+        .btn-group{
+            display:flex;
+            justify-content:center;
+            gap:20px;
+            flex-wrap:wrap;
+        }
+
+        .btn{
+            padding:12px 24px;
+            border-radius:8px;
+            font-weight:600;
+            transition:0.3s;
+        }
+
+        .btn-primary{
+            background:#38bdf8;
+            color:#000;
+        }
+
+        .btn-primary:hover{
+            background:#0ea5e9;
+        }
+
+        .btn-secondary{
+            border:1px solid #38bdf8;
+            color:#38bdf8;
+        }
+
+        .btn-secondary:hover{
+            background:#38bdf8;
+            color:#000;
+        }
+
+        .socials{
+            margin-top:30px;
+            display:flex;
+            justify-content:center;
+            gap:20px;
+        }
+
+        .socials a{
+            font-size:24px;
+            color:#cbd5e1;
+            transition:0.3s;
+        }
+
+        .socials a:hover{
+            color:#38bdf8;
+            transform:translateY(-3px);
+        }
+
+        /* Sections */
+
+        section{
+            padding:90px 0;
+        }
+
+        .section-title{
+            text-align:center;
+            font-size:40px;
+            margin-bottom:50px;
+            color:#38bdf8;
+        }
+
+        /* About */
+
+        .about-card{
+            background:#111827;
+            padding:35px;
+            border-radius:15px;
+            box-shadow:0 0 20px rgba(0,0,0,0.3);
+        }
+
+        .about-card p{
+            color:#cbd5e1;
+            font-size:18px;
+        }
+
+        /* Skills */
+
+        .skills-grid{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+            gap:25px;
+        }
+
+        .skill-card{
+            background:#111827;
+            padding:25px;
+            border-radius:12px;
+            text-align:center;
+            transition:0.3s;
+        }
+
+        .skill-card:hover{
+            transform:translateY(-5px);
+        }
+
+        .skill-card i{
+            font-size:40px;
+            margin-bottom:15px;
+            color:#38bdf8;
+        }
+
+        /* Projects */
+
+        .projects-grid{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+            gap:30px;
+        }
+
+        .project-card{
+            background:#111827;
+            padding:30px;
+            border-radius:15px;
+            transition:0.3s;
+        }
+
+        .project-card:hover{
+            transform:translateY(-5px);
+        }
+
+        .project-icon{
+            font-size:45px;
+            color:#38bdf8;
+            margin-bottom:20px;
+        }
+
+        .project-card h3{
+            margin-bottom:15px;
+        }
+
+        .tech-tags{
+            margin:20px 0;
+        }
+
+        .tag{
+            display:inline-block;
+            background:#1e293b;
+            padding:6px 12px;
+            border-radius:20px;
+            margin:5px;
+            font-size:14px;
+        }
+
+        /* Certifications */
+
+        .cert-grid{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+            gap:30px;
+        }
+
+        .cert-card{
+            background:#111827;
+            padding:30px;
+            border-radius:15px;
+            text-align:center;
+        }
+
+        .cert-card i{
+            font-size:45px;
+            color:#38bdf8;
+            margin-bottom:20px;
+        }
+
+        /* Contact */
+
+        .contact-wrapper{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+            gap:40px;
+        }
+
+        .contact-card{
+            background:#111827;
+            padding:30px;
+            border-radius:15px;
+        }
+
+        .contact-item{
+            margin-bottom:20px;
+        }
+
+        .contact-item i{
+            color:#38bdf8;
+            margin-right:10px;
+        }
+
+        form input,
+        form textarea{
+            width:100%;
+            padding:12px;
+            margin-bottom:15px;
+            border:none;
+            border-radius:8px;
+            background:#1e293b;
+            color:white;
+        }
+
+        form button{
+            border:none;
+            cursor:pointer;
+        }
+
+        /* Footer */
+
+        footer{
+            background:#020617;
+            text-align:center;
+            padding:25px;
+            color:#94a3b8;
+        }
+
+        /* Mobile */
+
+        @media(max-width:768px){
+
+            .hero h1{
+                font-size:38px;
+            }
+
+            .nav-links{
+                display:none;
+            }
+
+            .section-title{
+                font-size:32px;
+            }
+
+        }
+
+    </style>
 </head>
+
 <body>
-    <!-- Navigation -->
+
+    <!-- Navbar -->
+
     <nav class="navbar">
-        <div class="container">
-            <div class="nav-brand">
-                <h2>Tejas Nathe</h2>
-            </div>
-            <ul class="nav-menu">
-                <li><a href="#home" class="nav-link">Home</a></li>
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#skills" class="nav-link">Skills</a></li>
-                <li><a href="#projects" class="nav-link">Projects</a></li>
-                <li><a href="#certifications" class="nav-link">Certifications</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
-            </ul>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
+        <div class="container nav-container">
+            <div class="logo">Tejas Nathe</div>
+
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#certifications">Certifications</a>
+                <a href="#contact">Contact</a>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
+    <!-- Hero -->
+
+    <section class="hero" id="home">
+
         <div class="container">
-            <div class="hero-content">
-                <h1 class="hero-title">Hi, I'm <span class="highlight">Tejas Anand Nathe</span></h1>
-                <p class="hero-subtitle">Computer Engineering Student | Python Developer</p>
-                <p class="hero-description">Passionate about Data Analysis, Data Science & Building Real-World Solutions</p>
-                <div class="hero-buttons">
-                    <a href="#projects" class="btn btn-primary">View Projects</a>
-                    <a href="#contact" class="btn btn-secondary">Contact Me</a>
-                </div>
-                <div class="social-links">
-                    <a href="https://github.com/tejas27x" target="_blank" rel="noopener noreferrer" class="social-icon">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/in/tejas-nathe-748b4b282" target="_blank" rel="noopener noreferrer" class="social-icon">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                    <a href="tel:9146328635" class="social-icon">
-                        <i class="fas fa-phone"></i>
-                    </a>
-                </div>
+
+            <h1>Hi, I'm <span class="highlight">Tejas Anand Nathe</span></h1>
+
+            <h2>Computer Engineering Student | Data Analytics Enthusiast</h2>
+
+            <p>
+                Building data-driven projects using Python, SQL, and real-world business insights.
+                Passionate about Data Analytics, Data Science, and solving practical problems using technology.
+            </p>
+
+            <div class="btn-group">
+                <a href="#projects" class="btn btn-primary">View Projects</a>
+
+                <a href="#contact" class="btn btn-secondary">Contact Me</a>
             </div>
+
+            <div class="socials">
+
+                <a href="https://github.com/tejas27x" target="_blank">
+                    <i class="fab fa-github"></i>
+                </a>
+
+                <a href="https://www.linkedin.com/in/tejas-nathe-748b4b282" target="_blank">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+
+                <a href="tel:9146328635">
+                    <i class="fas fa-phone"></i>
+                </a>
+
+            </div>
+
         </div>
+
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="about">
+    <!-- About -->
+
+    <section id="about">
+
         <div class="container">
+
             <h2 class="section-title">About Me</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>Namaste! Main Tejas Nathe, third year Computer Engineering ka student hoon. Mera main focus hai data analysis, data science aur Python development mein apni skills ko improve karna. Mujhe problem-solving aur data-driven decisions lena bahut pasand hai. Main actively real-world projects build kar raha hoon taaki practical exposure mil sake. Mera career goal hai ek aisi data-focused role mein kaam karna jahan Python aur databases ka extensive use ho. I believe in learning by building, failing, and improving. Currently exploring real-world data problems using Python aur har din kuch naya seekhne ki koshish kar raha hoon.</p>
-                </div>
-                <div class="about-info">
-                    <div class="info-card">
-                        <i class="fas fa-graduation-cap"></i>
-                        <h3>Education</h3>
-                        <p>Third Year (TE)</p>
-                        <p>Computer Engineering</p>
-                    </div>
-                    <div class="info-card">
-                        <i class="fas fa-briefcase"></i>
-                        <h3>Looking For</h3>
-                        <p>Jobs & Internships</p>
-                        <p>Data Analytics, Data Science</p>
-                    </div>
-                    <div class="info-card">
-                        <i class="fas fa-code"></i>
-                        <h3>Specialization</h3>
-                        <p>Python Development</p>
-                        <p>Database Management</p>
-                    </div>
-                </div>
+
+            <div class="about-card">
+
+                <p>
+                    I'm a Third-Year Computer Engineering student focused on Data Analytics, Python, and problem-solving.
+                    I enjoy working with data, uncovering insights, and building projects that solve real-world problems.
+
+                    Currently, I am improving my skills in Python, SQL, data analysis, and cloud technologies while actively building hands-on projects to strengthen my practical experience.
+                </p>
+
             </div>
+
         </div>
+
     </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="skills">
+    <!-- Skills -->
+
+    <section id="skills">
+
         <div class="container">
-            <h2 class="section-title">Technical Skills</h2>
-            <p class="skills-subtitle">Focused on writing clean Python code, handling data efficiently, and building logic-driven solutions.</p>
-            
+
+            <h2 class="section-title">Skills</h2>
+
             <div class="skills-grid">
-                <div class="skill-item">
-                    <div class="skill-header">
-                        <span class="skill-name">Python Programming</span>
-                        <span class="skill-percentage">80%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-progress="80"></div>
-                    </div>
+
+                <div class="skill-card">
+                    <i class="fab fa-python"></i>
+                    <h3>Python</h3>
                 </div>
 
-                <div class="skill-item">
-                    <div class="skill-header">
-                        <span class="skill-name">SQL (Relational Databases)</span>
-                        <span class="skill-percentage">70%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-progress="70"></div>
-                    </div>
+                <div class="skill-card">
+                    <i class="fas fa-database"></i>
+                    <h3>SQL</h3>
                 </div>
 
-                <div class="skill-item">
-                    <div class="skill-header">
-                        <span class="skill-name">MongoDB (NoSQL Database)</span>
-                        <span class="skill-percentage">65%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-progress="65"></div>
-                    </div>
+                <div class="skill-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Data Analysis</h3>
                 </div>
 
-                <div class="skill-item">
-                    <div class="skill-header">
-                        <span class="skill-name">Data Handling & Logical Thinking</span>
-                        <span class="skill-percentage">75%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-progress="75"></div>
-                    </div>
+                <div class="skill-card">
+                    <i class="fas fa-table"></i>
+                    <h3>Pandas</h3>
                 </div>
+
+                <div class="skill-card">
+                    <i class="fas fa-chart-bar"></i>
+                    <h3>Matplotlib</h3>
+                </div>
+
+                <div class="skill-card">
+                    <i class="fas fa-server"></i>
+                    <h3>MongoDB</h3>
+                </div>
+
+                <div class="skill-card">
+                    <i class="fab fa-aws"></i>
+                    <h3>AWS Basics</h3>
+                </div>
+
+                <div class="skill-card">
+                    <i class="fas fa-search"></i>
+                    <h3>EDA</h3>
+                </div>
+
             </div>
+
         </div>
+
     </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="projects">
+    <!-- Projects -->
+
+    <section id="projects">
+
         <div class="container">
+
             <h2 class="section-title">Projects</h2>
+
             <div class="projects-grid">
+
+                <!-- Project 1 -->
+
                 <div class="project-card">
+
+                    <div class="project-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+
+                    <h3>Customer Delinquency Risk Analysis</h3>
+
+                    <p>
+                        Performed exploratory data analysis on customer financial data to identify delinquency risk patterns using behavioral and financial indicators.
+                    </p>
+
+                    <div class="tech-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">EDA</span>
+                        <span class="tag">Risk Analysis</span>
+                        <span class="tag">Data Cleaning</span>
+                    </div>
+
+                    <p>
+                        <strong>Key Insight:</strong>
+                        Customers with high DTI and high credit utilization showed the highest delinquency risk.
+                    </p>
+
+                    <br>
+
+                    <a href="https://github.com/tejas27x" target="_blank" class="btn btn-primary">
+                        View Project
+                    </a>
+
+                </div>
+
+                <!-- Project 2 -->
+
+                <div class="project-card">
+
                     <div class="project-icon">
                         <i class="fas fa-newspaper"></i>
                     </div>
+
                     <h3>Fake News Generator</h3>
-                    <p class="project-description">A Python-based project that generates and analyzes text data to understand how fake news content is structured.</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">Text Processing</span>
-                        <span class="tech-tag">Logic Building</span>
+
+                    <p>
+                        Python-based project that generates and analyzes text structures to understand how fake news content is created.
+                    </p>
+
+                    <div class="tech-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Text Processing</span>
+                        <span class="tag">Logic Building</span>
                     </div>
-                    <div class="project-outcome">
-                        <strong>Outcome:</strong> Improved understanding of text manipulation and logical flow.
-                    </div>
+
                 </div>
 
+                <!-- Project 3 -->
+
                 <div class="project-card">
+
                     <div class="project-icon">
                         <i class="fas fa-volume-up"></i>
                     </div>
+
                     <h3>Text to Audio Converter</h3>
-                    <p class="project-description">A Python application that converts written text into speech using text-to-speech concepts.</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">File Handling</span>
+
+                    <p>
+                        A Python application that converts text into speech using text-to-speech concepts and file handling.
+                    </p>
+
+                    <div class="tech-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Automation</span>
+                        <span class="tag">File Handling</span>
                     </div>
-                    <div class="project-outcome">
-                        <strong>Outcome:</strong> Learned working with external libraries and real-world utility-based applications.
-                    </div>
+
                 </div>
+
             </div>
+
         </div>
+
     </section>
 
-    <!-- Certifications Section -->
-    <section id="certifications" class="certifications">
+    <!-- Certifications -->
+
+    <section id="certifications">
+
         <div class="container">
+
             <h2 class="section-title">Certifications</h2>
-            <p class="certifications-subtitle">Continuously upgrading skills through hands-on practice and certifications.</p>
-            
-            <div class="certifications-grid">
-                <div class="certification-card">
-                    <div class="cert-icon">
-                        <i class="fas fa-certificate"></i>
-                    </div>
-                    <h3>Python Developer Certification</h3>
-                    <p>Comprehensive certification covering Python fundamentals, advanced concepts, and practical applications.</p>
+
+            <div class="cert-grid">
+
+                <div class="cert-card">
+
+                    <i class="fas fa-certificate"></i>
+
+                    <h3>Tata - GenAI Powered Data Analytics Job Simulation</h3>
+
+                    <p>
+                        Completed practical tasks involving EDA, predictive analytics strategy, business reporting, and AI-assisted collections planning.
+                    </p>
+
                 </div>
 
-                <div class="certification-card">
-                    <div class="cert-icon">
-                        <i class="fas fa-certificate"></i>
-                    </div>
-                    <h3>Data Science Certification</h3>
-                    <p>Certification focusing on data analysis, statistical methods, and data-driven decision making.</p>
-                </div>
             </div>
+
         </div>
+
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
+    <!-- Contact -->
+
+    <section id="contact">
+
         <div class="container">
-            <h2 class="section-title">Get In Touch</h2>
-            <p class="contact-subtitle">Let's connect and build something meaningful.</p>
-            
-            <div class="contact-content">
-                <div class="contact-info">
+
+            <h2 class="section-title">Contact Me</h2>
+
+            <div class="contact-wrapper">
+
+                <div class="contact-card">
+
                     <div class="contact-item">
                         <i class="fas fa-phone"></i>
-                        <div>
-                            <h3>Phone</h3>
-                            <p><a href="tel:9146328635">9146328635</a></p>
-                        </div>
+                        9146328635
                     </div>
+
                     <div class="contact-item">
                         <i class="fab fa-github"></i>
-                        <div>
-                            <h3>GitHub</h3>
-                            <p><a href="https://github.com/tejas27x" target="_blank" rel="noopener noreferrer">github.com/tejas27x</a></p>
-                        </div>
+
+                        <a href="https://github.com/tejas27x" target="_blank">
+                            github.com/tejas27x
+                        </a>
                     </div>
+
                     <div class="contact-item">
                         <i class="fab fa-linkedin"></i>
-                        <div>
-                            <h3>LinkedIn</h3>
-                            <p><a href="https://www.linkedin.com/in/tejas-nathe-748b4b282" target="_blank" rel="noopener noreferrer">Tejas Nathe</a></p>
-                        </div>
+
+                        <a href="https://www.linkedin.com/in/tejas-nathe-748b4b282" target="_blank">
+                            LinkedIn Profile
+                        </a>
                     </div>
+
                 </div>
 
-                <div class="contact-form-wrapper">
-                    <form id="contactForm" class="contact-form">
-                        <div class="form-group">
-                            <label for="name">Your Name</label>
-                            <input type="text" id="name" name="name" required placeholder="Enter your name">
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Your Email</label>
-                            <input type="email" id="email" name="email" required placeholder="Enter your email">
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Your Message</label>
-                            <textarea id="message" name="message" rows="5" required placeholder="Enter your message"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Send Message</button>
+                <!-- Contact Form -->
+
+                <div class="contact-card">
+
+                    <form>
+
+                        <input type="text" placeholder="Your Name" required>
+
+                        <input type="email" placeholder="Your Email" required>
+
+                        <textarea rows="5" placeholder="Your Message"></textarea>
+
+                        <button class="btn btn-primary">
+                            Send Message
+                        </button>
+
                     </form>
-                    <div id="formMessage" class="form-message"></div>
+
                 </div>
+
             </div>
+
         </div>
+
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2026 Tejas Anand Nathe | Built with passion and Python</p>
-            <div class="footer-social">
-                <a href="https://github.com/tejas27x" target="_blank" rel="noopener noreferrer" class="footer-icon">
-                    <i class="fab fa-github"></i>
-                </a>
-                <a href="https://www.linkedin.com/in/tejas-nathe-748b4b282" target="_blank" rel="noopener noreferrer" class="footer-icon">
-                    <i class="fab fa-linkedin"></i>
-                </a>
-            </div>
-        </div>
+
+    <footer>
+
+        <p>
+            © 2026 Tejas Anand Nathe | Built with passion and consistency 🚀
+        </p>
+
     </footer>
 
-    <!-- Custom JavaScript -->
-    <script src="js/script.js"></script>
 </body>
 </html>
