@@ -1,268 +1,216 @@
-// ===================================
-// NAVIGATION MENU TOGGLE
-// ===================================
-const hamburger = document.querySelector('.hamburger');
-const navMenu = document.querySelector('.nav-menu');
-const navLinks = document.querySelectorAll('.nav-link');
+// ===============================
+// PORTFOLIO WEBSITE SCRIPT
+// ===============================
 
-// Toggle mobile menu
-hamburger.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
-    hamburger.classList.toggle('active');
-});
+// Smooth Active Navbar Highlight
 
-// Close menu when clicking on a link
-navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        navMenu.classList.remove('active');
-        hamburger.classList.remove('active');
-    });
-});
+const sections = document.querySelectorAll("section");
+const navLinks = document.querySelectorAll(".nav-links a");
 
-// ===================================
-// SMOOTH SCROLLING
-// ===================================
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            const offset = 80; // Navbar height
-            const targetPosition = target.offsetTop - offset;
-            window.scrollTo({
-                top: targetPosition,
-                behavior: 'smooth'
-            });
-        }
-    });
-});
+window.addEventListener("scroll", () => {
 
-// ===================================
-// NAVBAR SCROLL EFFECT
-// ===================================
-window.addEventListener('scroll', () => {
-    const navbar = document.querySelector('.navbar');
-    if (window.scrollY > 50) {
-        navbar.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
-    } else {
-        navbar.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.1)';
-    }
-});
+    let current = "";
 
-// ===================================
-// SKILL BARS ANIMATION
-// ===================================
-const animateSkillBars = () => {
-    const skillBars = document.querySelectorAll('.skill-progress');
-    const skillsSection = document.querySelector('.skills');
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                skillBars.forEach(bar => {
-                    const progress = bar.getAttribute('data-progress');
-                    setTimeout(() => {
-                        bar.style.width = progress + '%';
-                    }, 200);
-                });
-                observer.unobserve(entry.target);
-            }
-        });
-    }, {
-        threshold: 0.5
-    });
-    
-    if (skillsSection) {
-        observer.observe(skillsSection);
-    }
-};
-
-// Initialize skill bars animation
-animateSkillBars();
-
-// ===================================
-// CONTACT FORM HANDLING
-// ===================================
-const contactForm = document.getElementById('contactForm');
-const formMessage = document.getElementById('formMessage');
-
-contactForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    
-    // Get form data
-    const formData = {
-        name: document.getElementById('name').value,
-        email: document.getElementById('email').value,
-        message: document.getElementById('message').value
-    };
-    
-    // Validate form
-    if (!formData.name || !formData.email || !formData.message) {
-        showMessage('Please fill in all fields.', 'error');
-        return;
-    }
-    
-    // Email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(formData.email)) {
-        showMessage('Please enter a valid email address.', 'error');
-        return;
-    }
-    
-    // Show success message (in a real application, you would send this data to a server)
-    showMessage('Thank you for your message! I will get back to you soon.', 'success');
-    
-    // Reset form
-    contactForm.reset();
-    
-    // Log form data to console (for demonstration)
-    console.log('Form submitted:', formData);
-});
-
-function showMessage(message, type) {
-    formMessage.textContent = message;
-    formMessage.className = `form-message ${type}`;
-    
-    // Hide message after 5 seconds
-    setTimeout(() => {
-        formMessage.className = 'form-message';
-        formMessage.textContent = '';
-    }, 5000);
-}
-
-// ===================================
-// SCROLL REVEAL ANIMATION
-// ===================================
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-        }
-    });
-}, observerOptions);
-
-// Observe elements for scroll reveal
-document.addEventListener('DOMContentLoaded', () => {
-    const sections = document.querySelectorAll('section');
     sections.forEach(section => {
-        section.style.opacity = '0';
-        section.style.transform = 'translateY(30px)';
-        section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(section);
-    });
-});
 
-// ===================================
-// ACTIVE NAVIGATION LINK
-// ===================================
-const sections = document.querySelectorAll('section');
-const navLinksAll = document.querySelectorAll('.nav-link');
-
-window.addEventListener('scroll', () => {
-    let current = '';
-    
-    sections.forEach(section => {
         const sectionTop = section.offsetTop;
         const sectionHeight = section.clientHeight;
-        if (window.scrollY >= sectionTop - 100) {
-            current = section.getAttribute('id');
+
+        if (pageYOffset >= sectionTop - 200) {
+            current = section.getAttribute("id");
         }
+
     });
-    
-    navLinksAll.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${current}`) {
-            link.classList.add('active');
+
+    navLinks.forEach(link => {
+
+        link.classList.remove("active");
+
+        if (link.getAttribute("href").includes(current)) {
+            link.classList.add("active");
         }
+
     });
+
 });
 
-// ===================================
-// LOADING ANIMATION
-// ===================================
-window.addEventListener('load', () => {
-    document.body.style.opacity = '0';
-    setTimeout(() => {
-        document.body.style.transition = 'opacity 0.5s ease';
-        document.body.style.opacity = '1';
-    }, 100);
-});
+// ===============================
+// Scroll Reveal Animation
+// ===============================
 
-// ===================================
-// PREVENT CONTACT FORM DEFAULT BEHAVIOR
-// ===================================
-document.querySelectorAll('input, textarea').forEach(element => {
-    element.addEventListener('invalid', (e) => {
-        e.preventDefault();
-        element.classList.add('error');
+const revealElements = document.querySelectorAll(
+    ".about-card, .skill-card, .project-card, .cert-card, .contact-card"
+);
+
+const revealOnScroll = () => {
+
+    revealElements.forEach(element => {
+
+        const windowHeight = window.innerHeight;
+        const elementTop = element.getBoundingClientRect().top;
+        const revealPoint = 100;
+
+        if (elementTop < windowHeight - revealPoint) {
+            element.classList.add("show");
+        }
+
     });
-    
-    element.addEventListener('input', () => {
-        element.classList.remove('error');
+
+};
+
+window.addEventListener("scroll", revealOnScroll);
+revealOnScroll();
+
+// ===============================
+// Contact Form Validation
+// ===============================
+
+const form = document.querySelector("form");
+
+form.addEventListener("submit", (e) => {
+
+    e.preventDefault();
+
+    const inputs = form.querySelectorAll("input, textarea");
+
+    let valid = true;
+
+    inputs.forEach(input => {
+
+        if (input.value.trim() === "") {
+            valid = false;
+            input.style.border = "1px solid red";
+        } else {
+            input.style.border = "none";
+        }
+
     });
-});
 
-// ===================================
-// SCROLL TO TOP FUNCTIONALITY
-// ===================================
-let scrollToTopBtn = document.createElement('button');
-scrollToTopBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
-scrollToTopBtn.setAttribute('id', 'scrollToTop');
-scrollToTopBtn.style.cssText = `
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #2563eb, #3b82f6);
-    color: white;
-    border: none;
-    cursor: pointer;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-    z-index: 999;
-`;
+    if (valid) {
 
-document.body.appendChild(scrollToTopBtn);
+        alert("Message Sent Successfully 🚀");
 
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 500) {
-        scrollToTopBtn.style.display = 'flex';
+        form.reset();
+
     } else {
-        scrollToTopBtn.style.display = 'none';
+
+        alert("Please fill all fields properly.");
+
     }
+
 });
 
-scrollToTopBtn.addEventListener('click', () => {
+// ===============================
+// Typing Effect Hero Text
+// ===============================
+
+const heroTitle = document.querySelector(".hero h2");
+
+const textArray = [
+    "Computer Engineering Student",
+    "Data Analytics Enthusiast",
+    "Python Developer",
+    "Future Data Scientist"
+];
+
+let textIndex = 0;
+let charIndex = 0;
+let currentText = "";
+let isDeleting = false;
+
+function typeEffect() {
+
+    currentText = textArray[textIndex];
+
+    if (!isDeleting) {
+
+        heroTitle.textContent =
+            currentText.substring(0, charIndex + 1);
+
+        charIndex++;
+
+        if (charIndex === currentText.length) {
+
+            isDeleting = true;
+
+            setTimeout(typeEffect, 1200);
+            return;
+        }
+
+    } else {
+
+        heroTitle.textContent =
+            currentText.substring(0, charIndex - 1);
+
+        charIndex--;
+
+        if (charIndex === 0) {
+
+            isDeleting = false;
+
+            textIndex++;
+
+            if (textIndex === textArray.length) {
+                textIndex = 0;
+            }
+
+        }
+
+    }
+
+    setTimeout(typeEffect, isDeleting ? 60 : 100);
+
+}
+
+typeEffect();
+
+// ===============================
+// Scroll To Top Button
+// ===============================
+
+const scrollBtn = document.createElement("button");
+
+scrollBtn.innerHTML = "↑";
+
+scrollBtn.classList.add("scroll-top-btn");
+
+document.body.appendChild(scrollBtn);
+
+window.addEventListener("scroll", () => {
+
+    if (window.scrollY > 300) {
+        scrollBtn.style.display = "block";
+    } else {
+        scrollBtn.style.display = "none";
+    }
+
+});
+
+scrollBtn.addEventListener("click", () => {
+
     window.scrollTo({
         top: 0,
-        behavior: 'smooth'
+        behavior: "smooth"
     });
+
 });
 
-scrollToTopBtn.addEventListener('mouseenter', () => {
-    scrollToTopBtn.style.transform = 'translateY(-5px)';
-    scrollToTopBtn.style.boxShadow = '0 6px 12px rgba(0, 0, 0, 0.15)';
-});
+// ===============================
+// Dynamic Footer Year
+// ===============================
 
-scrollToTopBtn.addEventListener('mouseleave', () => {
-    scrollToTopBtn.style.transform = 'translateY(0)';
-    scrollToTopBtn.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
-});
+const footer = document.querySelector("footer p");
 
-// ===================================
-// CONSOLE MESSAGE
-// ===================================
-console.log('%c👋 Hello! Thanks for checking out my portfolio!', 'color: #2563eb; font-size: 16px; font-weight: bold;');
-console.log('%c🚀 Built with passion and Python', 'color: #6b7280; font-size: 14px;');
+const currentYear = new Date().getFullYear();
+
+footer.innerHTML =
+    `© ${currentYear} Tejas Anand Nathe | Built with passion and consistency 🚀`;
+
+// ===============================
+// Console Message 😭
+// ===============================
+
+console.log(
+    "%cWelcome to Tejas Portfolio 🚀",
+    "color:#38bdf8; font-size:20px; font-weight:bold;"
+);
